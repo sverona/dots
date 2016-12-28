@@ -1,0 +1,38 @@
+set font                        "Metis 8"
+set default-bg                  "{{ bgc }}" #06
+set default-fg                  "{{ fgc }}" #01
+
+set statusbar-fg                "{{ fgc }}" #02
+set statusbar-bg                "{{ bgc }}" #04
+
+set inputbar-bg                 "{{ bgc }}" # currently not used
+set inputbar-fg                 "{{ fgc }}" #02
+
+set notification-error-bg       "{{ n_red }}" #08
+set notification-error-fg       "{{ fgc }}" #06
+
+set notification-warning-bg     "{{ n_yellow }}" #08
+set notification-warning-fg     "{{ fgc }}" #06
+
+set highlight-color             "{{ n_green }}" #0A
+set highlight-active-color      "{{ fgc }}" #08
+
+set completion-highlight-fg     "{{ fgc }}" #05
+set completion-highlight-bg     "{{ n_green }}" #0C
+
+set completion-bg               "{{ fgc }}" #05
+set completion-fg               "{{ n_green }}" #0C
+
+set notification-bg             "{{ n_cyan }}" #0B
+set notification-fg             "{{ fgc }}" #07
+
+set recolor-lightcolor          "#E0E0E0" #06
+set recolor-darkcolor           "#303030" #02
+set recolor                     "true"
+
+# setting recolor-keephue true will keep any color your pdf
+# has.  If it is set to false, it will just be shades of
+# gray.  (lol 50 shades of gray)
+set recolor-keephue             "true"
+
+# Rest of your configs go here:

@@ -1,0 +1,9 @@
+COLOR_DEFAULT_FG="{{ fgc }}"
+COLOR_DEFAULT_BG="{{ bgc }}"
+
+COLOR_ICON="{{ b_red }}"
+COLOR_SEP="{{ b_cyan }}"
+
+COLOR_LOWBAT="{{ b_red }}"
+COLOR_MIDBAT="{{ b_yellow }}"
+COLOR_FULLBAT="{{ b_green }}"
