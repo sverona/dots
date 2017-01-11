@@ -22,7 +22,7 @@ for n in 0 1; do
 
     . ./panel_colors
 
-    ./panel_bar < "$PANEL_FIFO"_$n | lemonbar -b -a 32 \
+    ./panel_bar < "$PANEL_FIFO"_$n | lemonbar -d -a 32 \
         -g $((1920 - 2 * $PANEL_SPACER))x$(($PANEL_SPACER + $PANEL_HEIGHT))+$((1920 * n + PANEL_SPACER))+$PANEL_SPACER {% for fn in term_fonts %}-f '{{ fn }}:pixelsize={{ panel_pixelsize }}' {% endfor %}-F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
 done
 

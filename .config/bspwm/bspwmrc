@@ -1,6 +1,6 @@
 #!/bin/sh
 
-xrandr --output LVDS1 --auto --output VGA1 --left-of LVDS1 --mode 1920x1080
+xrandr --output LVDS1 --auto --output VGA1 --right-of LVDS1 --mode 1920x1080
 
 i=1
 for monitor in $(bspc query -M); do

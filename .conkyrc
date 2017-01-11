@@ -1,0 +1,30 @@
+background no
+
+use_xft yes
+xftfont Metis:pixelsize=11
+
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+out_to_x yes
+double_buffer yes
+
+update_interval 120
+
+alignment tl
+gap_x 0
+gap_y 720
+minimum_width 200
+maximum_width 200
+
+# box drawing
+color1 {{ fgc[1:] }}
+
+# current date
+color2 {{ b_green[1:] }}
+
+# overdue dates
+color3 {{ b_red[1:] }}
+
+TEXT
+${execp ruby bin/todo.rb}
