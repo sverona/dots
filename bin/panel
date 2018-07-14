@@ -16,14 +16,13 @@ for n in 0 1; do
     mkfifo "$PANEL_FIFO"_$n
 
     # xtitle -sf 'T%s' > "$PANEL_FIFO" &
-    clock -sf 'S%A, %d %B %Y, %I:%M %P' > "$PANEL_FIFO"_$n &
-    conky -c panel_conkymuz > "$PANEL_FIFO"_$n &
-    ./panel_lemon > "$PANEL_FIFO"_$n &
+    clock -sf 'S %A, %d %B %Y, %I:%M %P' > "$PANEL_FIFO"_$n &
+    conky > "$PANEL_FIFO"_$n &
 
     . ./panel_colors
 
     ./panel_bar < "$PANEL_FIFO"_$n | lemonbar -d -a 32 \
-        -g $((1920 - 2 * $PANEL_SPACER))x$(($PANEL_SPACER + $PANEL_HEIGHT))+$((1920 * n + PANEL_SPACER))+$PANEL_SPACER {% for fn in term_fonts %}-f '{{ fn }}:pixelsize={{ panel_pixelsize }}' {% endfor %}-F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
+        -g $(($PANEL_WIDTH - 2 * $PANEL_SPACER))x$(($PANEL_SPACER + $PANEL_HEIGHT))+$(($PANEL_LEFT + $PANEL_WIDTH * n + PANEL_SPACER))+$PANEL_SPACER {% for fn in term_fonts %}-f '{{ fn }}:pixelsize={{ panel_pixelsize }}' {% endfor %}-F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
 done
 
 wid=$(xdo id -a "$PANEL_WM_NAME")

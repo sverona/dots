@@ -44,7 +44,7 @@ import System.Process
 --------------------------------------------------------------------------------------------------------------------
 -- DECLARE WORKSPACES RULES
 --------------------------------------------------------------------------------------------------------------------
-myLayout = gaps [(L, 212), (D, 28)] $ ( tiledSpace  ||| tiled ||| oneBig ||| fullTile )
+myLayout = gaps [(U, 28), (L, 212)] $ ( tiledSpace  ||| tiled ||| oneBig ||| fullTile )
     where
         tiled          = spacing 5 $ ResizableTall nmaster delta ratio [] 
         tiledSpace     = spacing 60 $ ResizableTall nmaster delta ratio [] 
@@ -115,7 +115,7 @@ myLogHook h = dynamicLogWithPP (defaultPP
 --------------------------------------------------------------------------------------------------------------------
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
-myXmonadBar = "lemonbar -g 200x20+6+6 {% for fn in term_fonts_xfontsel %}-f '{{ fn }}' {% endfor %}-F '{{ fgc }}' -B '{{ bgc }}'"
+myXmonadBar = "lemonbar -g 200x20+6+6 {% for fn in term_fonts %}-f '{{ fn }}' {% endfor %}-F '{{ fgc }}' -B '{{ bgc }}'"
 
 main = do
     lemonbar     <- spawnPipe myXmonadBar
@@ -124,6 +124,7 @@ main = do
         , borderWidth        = 2
         , normalBorderColor  = color0
         , focusedBorderColor = color8
+        , focusFollowsMouse  = False
         , modMask            = mod1Mask
         , layoutHook         = smartBorders $ myLayout
         , workspaces         = myWorkspaces
@@ -139,8 +140,7 @@ main = do
         `additionalKeys`
         [((mod4Mask .|. shiftMask    , xK_b), spawn "luakit")
         
-        ,((mod4Mask                  , xK_r), spawn "/home/malone/bin/lens")
-        ,((mod4Mask                  , xK_q), spawn "killall dzen2; killall conky; killall tint2; cd ~/.xmonad; ghc -threaded xmonad.hs; mv xmonad xmonad-x86_64-linux; xmonad --restart" )
+        ,((mod4Mask                  , xK_r), spawn "rofi -show run")
 
         ,((mod4Mask .|. shiftMask    , xK_c), kill)
 
@@ -162,10 +162,7 @@ main = do
 
 -- Define constants
 
-myTerminal     = "termite"
-myFont          = "{{ term_fonts_xfontsel[1] }}"
-
-
+myTerminal     = "st"
 
 color0  = "{{ n_black }}"
 color8  = "{{ b_black }}"

@@ -30,7 +30,7 @@ autocutsel -selection PRIMARY -fork &
 
 
 # set timezone
-export TZ="America/New_York"
+export TZ="America/Chicago"
 
 
 # tell Qt apps to use GTK style
@@ -38,8 +38,7 @@ export QT_STYLE_OVERRIDE="gtk2"
 
 
 # start window manager and hotkey daemon
-export WM="bspwm"
-sxhkd &
+export WM="xmonad"
 
 # start miscellaneous background processes
 for daemon in mopidy compton dunst; do
