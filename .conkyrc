@@ -5,4 +5,4 @@ own_window no
 
 
 TEXT
-C%{B\{{ n_blue }}}  %{B-} ${ibm_temps 0}C :: %{B\{{ n_blue }}}  %{B-} ${ibm_volume} :: %{B\{{ n_blue }}} ☷%{B-}${membar 20,10} :: %{B\{{ n_blue }}} / %{B-} ${fs_free /} :: %{B\{{ n_blue }}} ~ %{B-} ${fs_free /home} :: %{B\{{ n_blue }}} ♫ %{B-} ${scroll 50 ${exec ./conkymuz}}%{F\{{ bgc }}}|%{F-}
+C%{B\{{ n_blue }}}  %{B-} ${ibm_temps 0}C :: %{B\{{ n_blue }}}  %{B-} ${ibm_volume} :: %{B\{{ n_blue }}} ☷ %{B-} ${cpubar cpu0 20,10} :: %{B\{{ n_blue }}} / %{B-} ${fs_free /} :: %{B\{{ n_blue }}} ~ %{B-} ${fs_free /home} :: %{B\{{ n_blue }}} ♫ %{B-} ${scroll 50 ${exec ./conkymuz}}%{F\{{ bgc }}}|%{F-}
