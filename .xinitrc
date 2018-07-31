@@ -46,5 +46,6 @@ for daemon in mopidy compton dunst; do
 done
 
 sh ~/.fehbg &
+panel &
 
 exec "$WM" 2> ~/.xsession-errors

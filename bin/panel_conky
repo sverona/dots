@@ -1,0 +1,27 @@
+#!/bin/sh
+
+front_matter="%{U{{ n_red }}}"
+decor_front="%{B{{ n_magenta }}}%{+u}"
+decor_middle="%{B-}"
+decor_back="%{-u}"
+sep="%{F{{ b_black }}} ░ %{F-}"
+
+while read line; do
+  name="$(cut -f1  -d: <<< $line)"
+  text="$(cut -f2- -d: <<< $line)" 
+
+  case $name in
+    "begin") buf="C$front_matter";;
+    "end") buf="${buf%$sep}"; echo $buf ;;
+    "♫") pct=$(cut -f2 -d: <<< $text)
+         text="$(cut -f1 -d: <<< $text)"
+         bgchars=$(($pct * `expr length "$text"`/ 100))
+         bgtext="${text:0:$bgchars}"
+         nmtext="${text:$bgchars}"
+         text="%{B{{ b_black }}} $bgtext%{B-}$nmtext"
+         buf="$buf $decor_front $name $decor_middle$text $decor_back$sep"
+         echo "$text $pct $bgchars" >&2
+         ;;
+    *) buf="$buf $decor_front $name $decor_middle $text $decor_back$sep" ;;
+  esac
+done

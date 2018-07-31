@@ -3,6 +3,12 @@ out_to_x no
 update_interval 1
 own_window no
 
-
 TEXT
-C%{B\{{ n_blue }}}  %{B-} ${ibm_temps 0}C :: %{B\{{ n_blue }}}  %{B-} ${ibm_volume} :: %{B\{{ n_blue }}} ☷ %{B-} ${cpubar cpu0 20,10} :: %{B\{{ n_blue }}} / %{B-} ${fs_free /} :: %{B\{{ n_blue }}} ~ %{B-} ${fs_free /home} :: %{B\{{ n_blue }}} ♫ %{B-} ${scroll 50 ${exec ./conkymuz}}%{F\{{ bgc }}}|%{F-}
+begin
+:${ibm_temps 0}C
+:${ibm_volume}
+☷:${loadavg 1} 
+/:${fs_free /}
+♫:${mpd_smart 20}:${mpd_percent}
+◔:${tztime}
+end

@@ -91,8 +91,8 @@ newManageHook = myManageHook <+> manageHook defaultConfig
 myLogHook h = dynamicLogWithPP (defaultPP
                { ppCurrent         = wrap "%{F{{ n_blue }}}%{+u} " " %{F-}%{-u}"
                , ppVisible         = wrap "%{F{{ n_blue }}} " " %{F-}"
-               , ppHidden          = wrap " " " "
-               , ppHiddenNoWindows = const "   "
+               , ppHidden          = wrap "%{F-} " " %{F-}"
+               , ppHiddenNoWindows = wrap "%{F{{ n_black }}} " " %{F-}"
                , ppUrgent          = id
                , ppSep             = ""
                , ppWsSep           = ""
@@ -115,17 +115,18 @@ myLogHook h = dynamicLogWithPP (defaultPP
 --------------------------------------------------------------------------------------------------------------------
 -- Spawn pipes and menus on boot, set default settings
 --------------------------------------------------------------------------------------------------------------------
-myXmonadBar = "lemonbar -g 200x20+6+6 {% for fn in term_fonts %}-f '{{ fn }}' {% endfor %}-F '{{ fgc }}' -B '{{ bgc }}'"
+-- myXmonadBar = "lemonbar -g 200x18+6+6 -u2 -o-2 {% for fn in term_fonts %}-f '{{ fn }}' {% endfor %}-F '{{ fgc }}' -B '{{ bgc }}'"
+myXmonadBar = "while read line; do echo W$line; done > /tmp/panel-fifo_0"
 
 main = do
-    lemonbar     <- spawnPipe myXmonadBar
+    lemonbar <- spawnPipe myXmonadBar
     xmonad $ ewmh defaultConfig
         { terminal           = myTerminal
         , borderWidth        = 2
         , normalBorderColor  = color0
-        , focusedBorderColor = color8
+        , focusedBorderColor = color2
         , focusFollowsMouse  = False
-        , modMask            = mod1Mask
+        , modMask            = myModMask
         , layoutHook         = smartBorders $ myLayout
         , workspaces         = myWorkspaces
         , manageHook         = newManageHook
@@ -138,16 +139,16 @@ main = do
 -- Keyboard options
 --------------------------------------------------------------------------------------------------------------------
         `additionalKeys`
-        [((mod4Mask .|. shiftMask    , xK_b), spawn "luakit")
+        [((myModMask .|. shiftMask    , xK_b), spawn "luakit")
         
-        ,((mod4Mask                  , xK_r), spawn "rofi -show run")
+        ,((myModMask                  , xK_r), spawn "rofi -show run")
 
-        ,((mod4Mask .|. shiftMask    , xK_c), kill)
+        ,((myModMask .|. shiftMask    , xK_c), kill)
 
-        ,((mod4Mask .|. shiftMask    , xK_l), sendMessage MirrorShrink)
-        ,((mod4Mask .|. shiftMask    , xK_h), sendMessage MirrorExpand)
+        ,((myModMask .|. shiftMask    , xK_l), sendMessage MirrorShrink)
+        ,((myModMask .|. shiftMask    , xK_h), sendMessage MirrorExpand)
 
-        ,((mod4Mask                  , xK_Print), spawn "scrot -s & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
+        ,((myModMask                  , xK_Print), spawn "scrot -s & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
         ,((0                         , xK_Print), spawn "scrot & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
 
         ,((0                         , xF86XK_AudioLowerVolume), spawn "/home/malone/bin/dvol2 -d 5 & mplayer /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga")
@@ -163,6 +164,7 @@ main = do
 -- Define constants
 
 myTerminal     = "st"
+myModMask      = mod4Mask
 
 color0  = "{{ n_black }}"
 color8  = "{{ b_black }}"
