@@ -1,0 +1,24 @@
+#! /bin/sh
+#
+# Example panel for lemonbar
+
+. panel_colors
+
+while read line ; do
+	case $line in
+    W*)
+      # workspaces
+      spaces="${line#?}"
+      spaces="${spaces%?}"
+      ;;
+		S*)
+			# clock output
+			sys="${line#?}"
+			;;
+		C*)
+			# conky output
+			conky="${line#?}"
+			;;
+	esac
+	printf "%s\n" "%{l}${spaces}%{c}${sys}%{r}${conky}"
+done

@@ -1,4 +1,4 @@
-set font                        "Metis 8"
+set font                        "{{ term_fonts[0] }} {{ pixelsize }}"
 set default-bg                  "{{ bgc }}" #06
 set default-fg                  "{{ fgc }}" #01
 
