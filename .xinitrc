@@ -45,6 +45,7 @@ for daemon in mopidy compton dunst; do
     $daemon &
 done
 
+sh ~/.screenlayout/layout.sh
 sh ~/.fehbg &
 panel &
 

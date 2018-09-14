@@ -1,9 +1,9 @@
 ! Fonts
 *.boldFont: {% for f in term_fonts -%}
-    {{ f }}{{ ':bold' if use_bold else '' }}:pixelsize={{ pixelsize }}:antialias=true:hinting=true, 
+    {{ f }}{{ ':bold' if use_bold else '' }}:pixelsize={{ panel_pixelsize }}:antialias=true:hinting=true, 
 {%- endfor %}
 *.font: {% for f in term_fonts -%}
-    {{ f }}:pixelsize={{ pixelsize }}:antialias=true:hinting=true, 
+    {{ f }}:pixelsize={{ panel_pixelsize }}:antialias=true:hinting=true, 
 {%- endfor %}
 *.letterSpace: {{ term_letterspace }}
 
