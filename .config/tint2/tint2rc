@@ -57,7 +57,7 @@ taskbar_hide_if_empty = 1
 taskbar_hide_different_monitor = 0
 
 taskbar_name = 1
-taskbar_name_font = {{ term_fonts[0] }} {{ pixelsize }}
+taskbar_name_font = {{ fonts_alt[0] }} {{ pixelsize_alt }}
 taskbar_name_font_color = {{ fgc }} 100
 taskbar_name_active_font_color = {{ fgc }} 100
 taskbar_name_background_id = 3
@@ -71,7 +71,7 @@ task_text = 1
 task_maximum_size = 200 18
 task_centered = 0
 task_padding = 2 0
-task_font = {{ term_fonts[0] }} {{ pixelsize }}
+task_font = {{ fonts_alt[0] }} {{ pixelsize_alt }}
 task_font_color = {{ fgc }} 100
 task_active_font_color = {{ fgc }} 100
 task_background_id = 3

@@ -44,7 +44,7 @@ import System.Process
 --------------------------------------------------------------------------------------------------------------------
 -- DECLARE WORKSPACES RULES
 --------------------------------------------------------------------------------------------------------------------
-myLayout = gaps [(U, 28), (L, 212)] $ ( tiledSpace  ||| tiled ||| oneBig ||| fullTile )
+myLayout = gaps [(U, 28)] $ ( tiledSpace  ||| tiled ||| oneBig ||| fullTile )
     where
         tiled          = spacing 5 $ ResizableTall nmaster delta ratio [] 
         tiledSpace     = spacing 60 $ ResizableTall nmaster delta ratio [] 
@@ -73,9 +73,8 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 myManageHook = composeAll     [ resource =? "dmenu"     --> doFloat
                               , resource =? "skype"     --> doFloat
                               , resource =? "steam"     --> doFloat
+                              , title =? "Classify frame..."     --> doFloat
                                 
-                              , title    =? "https://www.pinterest.com - Pinterest • The world’s catalog of ideas - Pentadactyl" --> doFloat
-
                               , resource =? "plugin-container"     --> doFullFloat
 
                               , resource =? "ario"      --> doShift (myWorkspaces !! 4)
@@ -141,7 +140,7 @@ main = do
         `additionalKeys`
         [((myModMask .|. shiftMask    , xK_b), spawn "luakit")
         
-        ,((myModMask                  , xK_r), spawn "rofi -show run")
+        ,((myModMask                  , xK_p), spawn "rofi -show run")
 
         ,((myModMask .|. shiftMask    , xK_c), kill)
 
@@ -150,9 +149,6 @@ main = do
 
         ,((myModMask                  , xK_Print), spawn "scrot -s & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
         ,((0                         , xK_Print), spawn "scrot & mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga")
-
-        ,((0                         , xF86XK_AudioLowerVolume), spawn "/home/malone/bin/dvol2 -d 5 & mplayer /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga")
-        ,((0                         , xF86XK_AudioRaiseVolume), spawn "/home/malone/bin/dvol2 -i 5 & mplayer /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga")
 
         ,((0                         , xF86XK_AudioMute), spawn "/home/malone/bin/dvol2 -t")
 
@@ -163,7 +159,7 @@ main = do
 
 -- Define constants
 
-myTerminal     = "st"
+myTerminal     = "xst"
 myModMask      = mod4Mask
 
 color0  = "{{ n_black }}"

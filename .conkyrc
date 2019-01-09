@@ -5,10 +5,5 @@ own_window no
 
 TEXT
 begin
-:${ibm_temps 0}C
-:${ibm_volume}
-☷:${loadavg 1} 
-/:${fs_free /}
-♫:${mpd_smart 20}:${mpd_percent}
 ◔:${tztime}
 end

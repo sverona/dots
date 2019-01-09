@@ -13,17 +13,14 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 for n in 0 1; do
 # for n in 0; do
-    [ -e "$PANEL_FIFO"_$n ] && rm "$PANEL_FIFO"_$n
-    mkfifo "$PANEL_FIFO"_$n
+    [ -e "$PANEL_FIFO_BOT"_$n ] && rm "$PANEL_FIFO"_$n
+    mkfifo "$PANEL_FIFO_BOT"_$n
 
-    ./panel_ewmh > "$PANEL_FIFO"_$n &
-    xtitle -sf 'S%s\n' > "$PANEL_FIFO"_$n &
-    #clock -sf 'S %A, %d %B %Y, %I:%M %P' > "$PANEL_FIFO"_$n &
-    conky | ./panel_conky > "$PANEL_FIFO"_$n &
+    conky -c ~/.conkyrc_bottom | ./panel_conky > "$PANEL_FIFO_BOT"_$n &
 
     . ./panel_colors
 
-    ./panel_bar < "$PANEL_FIFO"_$n | lemonbar -d -a 32 -u 2 -o-2\
+    ./panel_bar < "$PANEL_FIFO_BOT"_$n | lemonbar -b -d -a 32 -u 2 -o-2\
         -g $((${PANEL_WIDTH[$n]} - 2 * $PANEL_SPACER))x$(($PANEL_SPACER + $PANEL_HEIGHT))+$(($PANEL_LEFT + ${PANEL_WIDTH[0]} * n + PANEL_SPACER))+$PANEL_SPACER {% for fn in term_fonts %}-f '{{ fn }}:pixelsize={{ panel_pixelsize }}' {% endfor %}-F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
 done
 

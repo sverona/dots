@@ -1,2 +1,2 @@
 rofi.theme: sasha
-rofi.font: {{ term_fonts[0] }} {{ pixelsize }}
+rofi.font: {{ fonts_alt[0] }} {{ pixelsize_alt }}

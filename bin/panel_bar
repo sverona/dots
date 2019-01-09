@@ -2,15 +2,15 @@
 #
 # Example panel for lemonbar
 
-. panel_colors
+cd $(dirname $0)
+. ./panel_colors
 
 while read line ; do
 	case $line in
-    W*)
-      # workspaces
-      spaces="${line#?}"
-      spaces="${spaces%?}"
-      ;;
+        W*)
+            # workspaces
+            spaces="${line#?}"
+            ;;
 		S*)
 			# clock output
 			sys="${line#?}"
